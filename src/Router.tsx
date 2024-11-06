@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import Calendar from "./pages/Calendar";
-import DashBoard from "./pages/DashBoard";
-import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
-import Setting from "./pages/Setting";
-import Today from "./pages/Today";
+import Calendar from "@/pages/Calendar";
+import DashBoard from "@/pages/DashBoard";
+import Login from "@/pages/Login";
+import NotFound from "@/pages/NotFound";
+import Setting from "@/pages/Setting";
+import Today from "@/pages/Today";
 
 const Router = () => {
     return (
