@@ -70,7 +70,8 @@
                 "rem"
             ],
             "/^border/": [
-                "px"
+                "px",
+                "%"
             ]
         },
         "order/order": [
