@@ -21,11 +21,13 @@
         "declaration-property-unit-allowed-list": {
             "width": [
                 "%",
-                "vw"
+                "vw",
+                "rem"
             ],
             "height": [
                 "%",
-                "vh"
+                "vh",
+                "rem"
             ],
             "font-size": [
                 "rem",
@@ -59,10 +61,13 @@
                 "rem"
             ],
             "letter-spacing": [
-                "em"
+                "em",
+                "rem",
+                "%"
             ],
             "word-spacing": [
-                "em"
+                "em",
+                "rem"
             ],
             "/^border/": [
                 "px"
