@@ -1,16 +1,15 @@
+import BtnDate from '@/components/common/BtnDate/BtnDate';
+import BtnStagingDate from '@/components/common/BtnDate/BtnStagingDate';
+import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
+import TextboxInput from '@/components/common/textbox/TextboxInput';
 import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
 import TextInputTitle from '@/components/common/textbox/TextInputTitle';
-import TextboxDailydate from '@/components/common/textbox/TextboxDailydate';
-import TextboxInput from '@/components/common/textbox/TextboxInput';
 
-type Props = {};
-
-const Today = (props: Props) => {
+function Today() {
     return (
         <div>
-            Today
             <TextboxInput variant="date" />
             <TextboxInput variant="time" />
             <TextboxInput variant="smallDate" />
@@ -21,14 +20,16 @@ const Today = (props: Props) => {
             <TextInputDesc type="long" />
             <TextInputDesc type="short" />
 
-            <TextboxDailydate type="long"/>
-            <TextboxDailydate type="short"/>
+            <TextboxDailydate type="long" />
+            <TextboxDailydate type="short" />
 
             <TextInputTime time="start" />
             <TextInputTime time="end" />
             <TextInputTime time="total" />
 
             <TextInputStaging />
+            <BtnDate date="2024.11.10" size="big" />
+            <BtnStagingDate />
         </div>
     );
 };
