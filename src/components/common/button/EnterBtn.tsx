@@ -6,7 +6,7 @@ import Icons from '@/assets/svg/index';
 const EnterBtn = () => {
 	return (
 		<EnterBtnLayout>
-			<Icons.Arrow_up />
+			<StyledIcon />
 		</EnterBtnLayout>
 	);
 };
@@ -26,4 +26,9 @@ const EnterBtnCss = css`
 
 const EnterBtnLayout = styled.button`
 	${EnterBtnCss}
+`;
+
+const StyledIcon = styled(Icons.Arrow_up)`
+	width: 1.6rem;
+	height: 1.6rem;
 `;
