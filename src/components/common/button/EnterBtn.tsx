@@ -16,7 +16,11 @@ export default EnterBtn;
 const EnterBtnCss = css`
 	display: flex;
 	align-items: center;
+    justify-content: center;
+	width: 4rem;
+	height: 2.2rem;
 	padding: 0.3rem 1.2rem;
+
 	border-radius: 8px;
 `;
 
