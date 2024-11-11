@@ -16,16 +16,24 @@ export default EnterBtn;
 const EnterBtnCss = css`
 	display: flex;
 	align-items: center;
-    justify-content: center;
+	justify-content: center;
 	width: 4rem;
 	height: 2.2rem;
-	padding: 0.3rem 1.2rem;
 
 	border-radius: 8px;
 `;
 
 const EnterBtnLayout = styled.button`
 	${EnterBtnCss}
+	background-color: ${({ theme }) => theme.palette.PRIMARY};
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.BLUE_PASSED}; /* 수정 필요 */
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* svg 색 수정 필요 */
+	}
 `;
 
 const StyledIcon = styled(Icons.Arrow_up)`

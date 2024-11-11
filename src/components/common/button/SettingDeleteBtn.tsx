@@ -3,19 +3,17 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-type Props = {};
-
-const SettingDeleteBtn = (props: Props) => {
+const SettingCheck3 = () => {
 	return (
-		<SettingDeleteBtnLayout>
-			<Icons.DeleteIcon />
-		</SettingDeleteBtnLayout>
+		<SettingCheck3Layout>
+			<Icons.SettingCheck3 /> {/*아이콘 크기 조정 필요*/}
+		</SettingCheck3Layout>
 	);
 };
 
-export default SettingDeleteBtn;
+export default SettingCheck3;
 
-const SettingDeleteBtnCss = css`
+const SettingCheck3Css = css`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -25,6 +23,15 @@ const SettingDeleteBtnCss = css`
 	border-radius: 8px;
 `;
 
-const SettingDeleteBtnLayout = styled.button`
-	${SettingDeleteBtnCss}
+const SettingCheck3Layout = styled.button`
+	${SettingCheck3Css}
+	background-color: ${({ theme }) => theme.palette.BLUE_DISABLED}; /* 수정 필요 */
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
+	}
+
+	&:active {
+		background-color: ${({ theme }) => theme.palette.PRIMARY}; /* svg 색 수정 필요 */
+	}
 `;
