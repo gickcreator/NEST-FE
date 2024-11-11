@@ -6,6 +6,7 @@ import Icn_nav_setting from '@/assets/svg/icn_nav_setting.svg?react';
 import Icn_nav_today from '@/assets/svg/icn_nav_today.svg?react';
 import Arrow_up from '@/assets/svg/arrow-up.svg?react';
 import Refresh from '@/assets/svg/refresh.svg?react';
+import PlusArrow from '@/assets/svg/PlusArrow.svg?react';
 import SelectedBox from '@/assets/svg/Selectbox_Selected.svg?react';
 import UnselectedBox from '@/assets/svg/Selectbox_Unselected.svg?react';
 
@@ -22,6 +23,7 @@ const Icons = {
     Refresh,
     SelectedBox,
 	UnselectedBox,
+    PlusArrow,
 };
 
 export default Icons;
