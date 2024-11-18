@@ -1,11 +1,5 @@
-type Props = {};
-
-const Login = (props: Props) => {
-  return (
-    <div>
-      <h1>Login</h1>
-    </div>
-  );
+function Login() {
+  return <>login</>;
 }
 
 export default Login;

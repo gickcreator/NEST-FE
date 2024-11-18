@@ -1,9 +1,9 @@
-type Props = {};
+import NavBar from '@/components/common/NavBar';
 
-const Calendar = (props: Props) => {
+function Calendar() {
   return (
     <div>
-      <h1>Calendar</h1>
+      <NavBar />
     </div>
   );
 }
