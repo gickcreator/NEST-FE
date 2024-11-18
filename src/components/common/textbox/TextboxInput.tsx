@@ -1,75 +1,41 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import Icons from '@/assets/svg/index';
+import { SizeType } from '@/types/textInputType';
+import getNameOfDay from '@/utils/getNameOfDay';
 
-import { theme } from '@/styles/theme';
+function TextboxDailydate({ type }: SizeType) {
+	const today = new Date();
+	const date = today.getDate();
+	const dayOfTheWeek = today.getDay();
 
-interface TextboxInputProps {
-	variant: 'date' | 'time' | 'smallDate';
-}
-const TextboxInput = ({ variant }: TextboxInputProps) => {
 	return (
-		<InputContainer variant={variant}>
-			{variant === 'time' && <ClockIcon />}
-			<StyledInput
-				type="text"
-				placeholder={variant === 'time' ? '시간 없음' : '2024.07.11'}
-				maxLength={10}
-				variant={variant}
-			/>
-		</InputContainer>
+		<DailydateLayout type={type}>
+			<DailydateContainer>
+				<DateText>{date}일</DateText>
+				{/* CAPTION_02 추가 후 수정 필요 */}
+				<DayText>{getNameOfDay(dayOfTheWeek)}</DayText>
+			</DailydateContainer>
+		</DailydateLayout>
 	);
-};
-const smallDateStyle = css`
-	width: 7.5rem;
-	padding: 0;
-`;
-const smallDateInputStyle = css`
-	padding: 0;
+}
 
-	text-align: center;
-
-	&:focus {
-		outline: solid 1px ${theme.palette.BLUE_DEFAULT};
-	}
-`;
-const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
+const DailydateLayout = styled.div<{ type: string }>`
 	display: flex;
-	gap: 0.5rem;
 	align-items: center;
-	width: 15.4rem;
-	height: 2.6rem;
-	padding: 0.3rem 1rem;
-
-	background-color: ${({ theme }) => theme.palette.GRAY_DISABLED};
-	border-radius: 8px;
-
-	&:focus-within {
-		background-color: ${({ theme }) => theme.palette.BLUE_DISABLED};
-	}
-
-	${({ variant }) => variant === 'smallDate' && smallDateStyle}
+	width: ${({ type }) => (type === 'long' ? '84rem' : '53.2rem')};
+	height: 5.6rem;
+	padding: 4px 8px;
 `;
-const StyledInput = styled.input<{ variant: 'date' | 'time' | 'smallDate' }>`
-	width: 100%;
-	height: 100%;
-
+const DailydateContainer = styled.div`
+	display: flex;
+	gap: 1.2rem;
+	align-items: baseline;
+`;
+const DateText = styled.h1`
+	${({ theme }) => theme.fontTheme.HEADLINE_01};
+`;
+const DayText = styled.p`
 	${({ theme }) => theme.fontTheme.CAPTION_01};
-	background-color: transparent;
-	border: none;
-	border-radius: 8px;
-
-	&:focus {
-		outline: none;
-	}
-
-	${({ variant }) => variant === 'smallDate' && smallDateInputStyle}
+	color: ${({ theme }) => theme.palette.GREY_04};
 `;
-
-const ClockIcon = styled(Icons.Icn_clock)`
-	width: 1.4rem;
-	height: 1.4rem;
-`;
-
-export default TextboxInput;
+export default TextboxDailydate;

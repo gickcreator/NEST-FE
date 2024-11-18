@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
 import { useNavigate } from 'react-router-dom';
 
+import NavBarIcon from './NavBarIcon';
+
 import sampleImg from '@/assets/images/sample.png';
-
 import { PAGE_ROUTE, PageRouteValues } from '@/constants/pages';
-
-import NavBarIcon from '@/components/common/NavBarIcon';
 
 function NavBar() {
     const navigate = useNavigate();
