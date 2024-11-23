@@ -30,12 +30,9 @@
       "@/*": [
         "src/*"
       ]
-    },
-    "types": [
-      "vite-plugin-svgr/client"
-    ]
+    }
   },
   "include": [
-    "src", "svg.d.ts"
+    "src"
   ]
 }
