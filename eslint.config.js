@@ -1,52 +1,28 @@
-import { defineConfig } from 'eslint-define-config';
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
 
-export default defineConfig({
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
-    'airbnb',
-    'airbnb-typescript',
-    'prettier',
-  ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react', 'react-hooks', 'react-refresh', '@typescript-eslint'],
-  rules: {
-    'react/require-default-props': 'off',
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-    'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
-    'react/react-in-jsx-scope': 'off',
-    'import/no-extraneous-dependencies': 0,
-    'no-use-before-define': ['error', { functions: true, classes: true, variables: false }],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
-  },
-  overrides: [
-    {
-      files: '**/*.+(ts|tsx)',
-      parser: '@typescript-eslint/parser',
-      plugins: ['@typescript-eslint'],
-      extends: ['plugin:@typescript-eslint/recommended'],
+export default tseslint.config(
+  { ignores: ['dist'] },
+  {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
     },
-  ],
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
-});
+)
