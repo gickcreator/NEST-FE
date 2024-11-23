@@ -28,6 +28,8 @@ function NavBar() {
     );
 }
 const NavBarLayout = styled.div`
+	position: fixed;
+	left: 0;
 	display: flex;
 	flex-direction: column;
 	gap: 12rem;
@@ -42,7 +44,7 @@ const ProfileImg = styled.img`
 	height: 4.4rem;
 	margin-top: 2.5rem;
 
-	background-color: #f5f7fc;
+	background-color: #dfe9fc;
 	border-radius: 50%;
 `;
 const IconContainer = styled.div`
