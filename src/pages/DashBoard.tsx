@@ -1,11 +1,11 @@
-type Props = {};
+import NavBar from '@/components/common/NavBar';
 
-const Dashboard = (props: Props) => {
+function DashBoard() {
     return (
         <div>
-        <h1>Dashboard</h1>
+            <NavBar />
         </div>
     );
 }
 
-export default Dashboard;
+export default DashBoard;

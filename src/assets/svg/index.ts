@@ -1,9 +1,3 @@
-import Icn_arrow_narrow_right from '@/assets/svg/arrow-narrow-right.svg?react';
-import Icn_clock from '@/assets/svg/icn_clock.svg?react';
-import Icn_nav_calendar from '@/assets/svg/icn_nav_calendar.svg?react';
-import Icn_nav_dashboard from '@/assets/svg/icn_nav_dashboard.svg?react';
-import Icn_nav_setting from '@/assets/svg/icn_nav_setting.svg?react';
-import Icn_nav_today from '@/assets/svg/icn_nav_today.svg?react';
 import DeleteIcon from '@/assets/svg/Delete.svg?react';
 import DoneIcon from '@/assets/svg/DoneIcon.svg?react';
 import PlusArrow from '@/assets/svg/PlusArrow.svg?react';
@@ -19,9 +13,24 @@ import TimelineDelete from '@/assets/svg/ic_delete.svg?react';
 import Refresh from '@/assets/svg/refresh.svg?react';
 import SettingCheck1 from '@/assets/svg/SettingCheck1.svg?react';
 
+import Icn_arrow_narrow_right from '@/assets/svg/arrow-narrow-right.svg?react';
+import Icn_calander from '@/assets/svg/calendar-minus-01.svg?react';
+import Icn_date_clock from '@/assets/svg/clock.svg?react';
+import Icn_clock from '@/assets/svg/icn_clock.svg?react';
+import Icn_nav_calendar from '@/assets/svg/icn_nav_calendar.svg?react';
+import Icn_nav_dashboard from '@/assets/svg/icn_nav_dashboard.svg?react';
+import Icn_nav_setting from '@/assets/svg/icn_nav_setting.svg?react';
+import Icn_nav_today from '@/assets/svg/icn_nav_today.svg?react';
+import Icn_line from '@/assets/svg/line164.svg?react';
+import IcnXCricle from '@/assets/svg/x-circle.svg?react';
+
 const Icons = {
     Icn_clock,
     Icn_arrow_narrow_right,
+    Icn_calander,
+    Icn_date_clock,
+    Icn_line,
+    IcnXCricle,
     Navbar: {
         Icn_nav_calendar,
         Icn_nav_dashboard,
