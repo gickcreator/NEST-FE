@@ -1,18 +1,16 @@
 import styled from '@emotion/styled';
 
-type Props = {};
-
-const TextInputStaging = (props: Props) => {
-    return (
-        <StagingLayout>
-            <TextArea placeholder="해야하는 일들을 쏟아내보세요." />
-            <BtnWrapper>
-                <TmpBtn />
-                <TmpBtn />
-            </BtnWrapper>
-        </StagingLayout>
-    );
-};
+function TextInputStaging() {
+	return (
+		<StagingLayout>
+			<TextArea placeholder="해야하는 일들을 쏟아내보세요." />
+			<BtnWrapper>
+				<TmpBtn />
+				<TmpBtn />
+			</BtnWrapper>
+		</StagingLayout>
+	);
+}
 const StagingLayout = styled.div`
 	display: flex;
 	flex-direction: column;
