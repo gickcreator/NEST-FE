@@ -6,25 +6,12 @@ import TextInputDesc from '@/components/common/textbox/TextInputDesc';
 import TextInputStaging from '@/components/common/textbox/TextInputStaging';
 import TextInputTime from '@/components/common/textbox/TextInputTime';
 import TextInputTitle from '@/components/common/textbox/TextInputTitle';
+import TargetArea from '@/components/targetArea/TargetArea';
 
 function Today() {
 	return (
 		<>
-			<TextboxInput variant="date" />
-			<TextboxInput variant="time" />
-			<TextboxInput variant="smallDate" />
-			<TextInputTitle type="long" />
-			<TextInputTitle type="short" />
-			<TextInputDesc type="long" />
-			<TextInputDesc type="short" />
-			<TextboxDailydate type="long" />
-			<TextboxDailydate type="short" />
-			<TextInputTime time="start" />
-			<TextInputTime time="end" />
-			<TextInputTime time="total" />
-			<TextInputStaging />
-			<BtnDate date="2024.11.23" size="big" />
-			<BtnStagingDate />
+		<TargetArea />
 		</>
 	);
 }
