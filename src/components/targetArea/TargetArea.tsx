@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import TargetAreaDate from './TargetAreaDate.tsx';
-import TargetControlSection from './TargetControlSection.tsx';
-import TargetTaskSection from './TargetTaskSection.tsx';
+import TargetAreaDate from './TargetAreaDate';
+import TargetControlSection from './TargetControlSection';
+import TargetTaskSection from './TargetTaskSection';
 
 function TargetArea() {
     return (
@@ -29,7 +29,7 @@ const TargetAreaLayout = styled.section`
 	height: fit-content;
 	padding: 0 0.7rem;
 
-	border: 1px solid ${({ theme }) => theme.palette.GREY_03};
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
 	border-radius: 12px;
 `;
 

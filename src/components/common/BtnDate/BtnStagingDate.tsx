@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 
 function BtnStagingDate() {
-    return (
-        <BtnStagingDateLayout>
-            <BtnStagingDateText>⇥ 마감 기한 설정</BtnStagingDateText>
-        </BtnStagingDateLayout>
-    );
+	return (
+		<BtnStagingDateLayout>
+			<BtnStagingDateText>⇥ 마감 기한 설정</BtnStagingDateText>
+		</BtnStagingDateLayout>
+	);
 }
 
 export default BtnStagingDate;
 
 const BtnStagingDateText = styled('p', { target: 'BtnStagingDateText' })`
-	color: ${({ theme }) => theme.palette.GREY_05};
+	color: ${({ theme }) => theme.palette.Grey.Grey5};
 	font-size: 1.2rem;
 	text-align: center;
 `;
@@ -25,23 +25,23 @@ const BtnStagingDateLayout = styled('div', { target: 'BtnStagingDateLayout' })`
 	height: 2.2rem;
 	padding: 0.3rem 1.2rem;
 
-	background: ${({ theme }) => theme.palette.GREY_03};
+	background: ${({ theme }) => theme.palette.Grey.Grey3};
 	cursor: pointer;
 	border-radius: 8px;
 
 	&:hover {
-		background: ${({ theme }) => theme.palette.GREY_04};
+		background: ${({ theme }) => theme.palette.Grey.Grey4};
 
 		${BtnStagingDateText} {
-			color: ${({ theme }) => theme.palette.GREY_06};
+			color: ${({ theme }) => theme.palette.Grey.Grey6};
 		}
 	}
 
 	&:active {
-		background: ${({ theme }) => theme.palette.GREY_05};
+		background: ${({ theme }) => theme.palette.Grey.Grey5};
 
 		${BtnStagingDateText} {
-			color: ${({ theme }) => theme.palette.WITHE};
+			color: ${({ theme }) => theme.palette.Grey.White};
 		}
 	}
 `;

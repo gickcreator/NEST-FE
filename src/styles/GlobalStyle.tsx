@@ -1,7 +1,7 @@
 import { Global, css } from '@emotion/react';
 
 const fonts = {
-  Pretendard: 'Pretendard-Medium',
+	Pretendard: 'Pretendard-Medium',
 };
 
 const style = css`
@@ -150,7 +150,7 @@ const style = css`
 `;
 
 function GlobalStyle() {
-  return <Global styles={style} />;
+	return <Global styles={style} />;
 }
 
 export default GlobalStyle;

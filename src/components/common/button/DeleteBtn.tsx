@@ -2,13 +2,13 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 
-const DeleteBtn = () => {
+function DeleteBtn() {
 	return (
 		<DeleteBtnLayout>
 			<StlyedDeleteIcon />
 		</DeleteBtnLayout>
 	);
-};
+}
 
 export default DeleteBtn;
 
@@ -19,11 +19,11 @@ const DeleteBtnLayout = styled.button`
 	width: 3.2rem;
 	height: 3.2rem;
 
-	background-color: ${({ theme }) => theme.palette.GREY_01};
+	background-color: ${({ theme }) => theme.palette.Grey.Grey1};
 	border-radius: 10px;
 
 	&:active {
-		background-color: ${({ theme }) => theme.palette.GREY_03};
+		background-color: ${({ theme }) => theme.palette.Grey.Grey3};
 	}
 `;
 
