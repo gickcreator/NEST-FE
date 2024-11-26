@@ -60,7 +60,7 @@ const SettingCheck1Layout = styled.button<{ isHover: boolean; isPressed: boolean
 		`}
 `;
 
-const StlyedSettingCheck1Ic = styled(Icons.SettingCheck1)`
+const StlyedSettingCheck1Ic = styled(Icons.SettingIcons.SettingCheck1)`
 	width: 1.6rem;
 	height: 1.6rem;
 `;
