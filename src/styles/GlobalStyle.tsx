@@ -147,7 +147,7 @@ const style = css`
 	html {
 		font-size: 62.5%;
 	}
-	
+
 	:root {
 		--fc-highlight-color: #dfe9ff;
 	}

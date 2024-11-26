@@ -4,15 +4,15 @@ const USERS = {
 		givenName: '시소',
 		familyName: '조',
 		image: 'https://aefawefwaewfwafwfawefawfe',
-		email: 'eunsoa0310@gmail.com',
+		email: 'test@gmail.com',
 		googleCalenders: [
 			{
 				id: 1,
-				email: 'nutshell@gmail.com',
+				email: 'test1@gmail.com',
 			},
 			{
 				id: 2,
-				email: 'nutshell@gmail.com',
+				email: 'test2@gmail.com',
 			},
 		],
 	},

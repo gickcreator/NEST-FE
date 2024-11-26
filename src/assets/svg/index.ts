@@ -1,6 +1,7 @@
 import Icn_arrow_narrow_right from '@/assets/svg/arrow-narrow-right.svg?react';
 import Arrow_up from '@/assets/svg/arrow-up.svg?react';
 import Icn_calander from '@/assets/svg/calendar-minus-01.svg?react';
+import ClockCheck from '@/assets/svg/clock-check.svg?react';
 import Icn_date_clock from '@/assets/svg/clock.svg?react';
 import DeleteIcon from '@/assets/svg/Delete.svg?react';
 import DoneIcon from '@/assets/svg/DoneIcon.svg?react';
@@ -32,44 +33,45 @@ import SettingX from '@/assets/svg/SettingXIcon.svg?react';
 import IcnXCricle from '@/assets/svg/x-circle.svg?react';
 
 const Icons = {
-    Icn_clock,
-    Icn_arrow_narrow_right,
-    Icn_calander,
-    Icn_date_clock,
-    Icn_line,
-    IcnXCricle,
-    Icn_hover_indicator,
+	Icn_clock,
+	Icn_arrow_narrow_right,
+	Icn_calander,
+	Icn_date_clock,
+	Icn_line,
+	IcnXCricle,
+	Icn_hover_indicator,
 	IcnFile,
-    Navbar: {
-        Icn_nav_calendar,
-        Icn_nav_dashboard,
-        Icn_nav_setting,
-        Icn_nav_today,
-    },
-    ArrangeBtn: {
-        IcnArrangeRight,
-        IcnArrangeLeft,
-        IcnArrangeSet,
-        IcnArrangeCalendar,
-    },
-    Arrow_up,
-    Refresh,
-    SelectedBox,
-    UnselectedBox,
-    PlusArrow,
-    DeleteIcon,
-    SettingIcons: {
+	Navbar: {
+		Icn_nav_calendar,
+		Icn_nav_dashboard,
+		Icn_nav_setting,
+		Icn_nav_today,
+	},
+	ArrangeBtn: {
+		IcnArrangeRight,
+		IcnArrangeLeft,
+		IcnArrangeSet,
+		IcnArrangeCalendar,
+	},
+	Arrow_up,
+	Refresh,
+	SelectedBox,
+	UnselectedBox,
+	PlusArrow,
+	DeleteIcon,
+	SettingIcons: {
 		SettingCheck1,
 		SettingCheck2,
 		SettingCheck3,
 		SettingCheck4,
 	},
-    SettingX,
-    SettingProgress,
-    DoneIcon,
-    ProgressIcon,
-    TimelineDelete,
-    plus_circle,
+	SettingX,
+	SettingProgress,
+	DoneIcon,
+	ProgressIcon,
+	TimelineDelete,
+	ClockCheck,
+	plus_circle,
 };
 
 export default Icons;

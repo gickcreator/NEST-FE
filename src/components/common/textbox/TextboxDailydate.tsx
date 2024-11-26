@@ -4,18 +4,18 @@ import { SizeType } from '@/types/textInputType';
 import getNameOfDay from '@/utils/getNameOfDay';
 
 function TextboxDailydate({ type }: SizeType) {
-    const today = new Date();
-    const date = today.getDate();
-    const dayOfTheWeek = today.getDay();
+	const today = new Date();
+	const date = today.getDate();
+	const dayOfTheWeek = today.getDay();
 
-    return (
-        <DailydateLayout type={type}>
-            <DailydateContainer>
-                <DateText>{date}일</DateText>
-                <DayText>{getNameOfDay(dayOfTheWeek)}</DayText>
-            </DailydateContainer>
-        </DailydateLayout>
-    );
+	return (
+		<DailydateLayout type={type}>
+			<DailydateContainer>
+				<DateText>{date}일</DateText>
+				<DayText>{getNameOfDay(dayOfTheWeek)}</DayText>
+			</DailydateContainer>
+		</DailydateLayout>
+	);
 }
 
 const DailydateLayout = styled.div<{ type: string }>`
@@ -32,7 +32,7 @@ const DailydateContainer = styled.div`
 `;
 const DateText = styled.h1`
 	${({ theme }) => theme.fontTheme.HEADLINE_01};
-    color: ${({ theme }) => theme.palette.Grey.Black};
+	color: ${({ theme }) => theme.palette.Grey.Black};
 `;
 const DayText = styled.p`
 	${({ theme }) => theme.fontTheme.CAPTION_02};

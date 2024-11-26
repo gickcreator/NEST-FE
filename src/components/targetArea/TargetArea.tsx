@@ -5,20 +5,20 @@ import TargetControlSection from './TargetControlSection';
 import TargetTaskSection from './TargetTaskSection';
 
 function TargetArea() {
-    return (
-        <TargetAreaLayout>
-            {/* 날짜 */}
-            <DateWrapper>
-                <TargetAreaDate />
-            </DateWrapper>
+	return (
+		<TargetAreaLayout>
+			{/* 날짜 */}
+			<DateWrapper>
+				<TargetAreaDate />
+			</DateWrapper>
 
-            {/* 버튼 */}
-            <TargetControlSection />
+			{/* 버튼 */}
+			<TargetControlSection />
 
-            {/* 태스크 목록 */}
-            <TargetTaskSection />
-        </TargetAreaLayout>
-    );
+			{/* 태스크 목록 */}
+			<TargetTaskSection />
+		</TargetAreaLayout>
+	);
 }
 const TargetAreaLayout = styled.section`
 	display: flex;

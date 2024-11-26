@@ -7,25 +7,25 @@ import sampleImg from '@/assets/images/sample.png';
 import { PAGE_ROUTE, PageRouteValues } from '@/constants/pages';
 
 function NavBar() {
-    const navigate = useNavigate();
-    const moveToPage = (type: string) => {
-        navigate(`/${type}`);
-    };
-    return (
-        <NavBarLayout>
-            <ProfileImg src={sampleImg} alt="프로필" />
-            <IconContainer>
-                {Object.entries(PAGE_ROUTE).map(([type, path]) => (
-                    <NavBarIcon
-                        key={path as PageRouteValues}
-                        name={path as PageRouteValues}
-                        type={type as PageRouteValues}
-                        onClick={() => moveToPage(type)}
-                    />
-                ))}
-            </IconContainer>
-        </NavBarLayout>
-    );
+	const navigate = useNavigate();
+	const moveToPage = (type: string) => {
+		navigate(`/${type}`);
+	};
+	return (
+		<NavBarLayout>
+			<ProfileImg src={sampleImg} alt="프로필" />
+			<IconContainer>
+				{Object.entries(PAGE_ROUTE).map(([type, path]) => (
+					<NavBarIcon
+						key={path as PageRouteValues}
+						name={path as PageRouteValues}
+						type={type as PageRouteValues}
+						onClick={() => moveToPage(type)}
+					/>
+				))}
+			</IconContainer>
+		</NavBarLayout>
+	);
 }
 const NavBarLayout = styled.div`
 	position: fixed;
