@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-import BtnDateText, { TextWrapper } from '@/components/common/BtnDate/BtnDateText';
+import BtnDateText, { TextWrapper } from './BtnDateText';
 
 import Icons from '@/assets/svg/index';
 
@@ -96,10 +96,10 @@ const BtnDateLayout = styled.div<{
 	min-width: 1.8rem;
 	padding: 0.5rem 1rem;
 
-	background: ${({ theme }) => theme.palette.WITHE};
+	background: ${({ theme }) => theme.palette.Grey.White};
 	cursor: pointer;
-	border: 1px solid ${({ theme }) => theme.palette.GREY_03};
-	border-color: ${({ isClicked, theme }) => (isClicked ? theme.palette.PRIMARY : theme.palette.GREY_03)};
+	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
+	border-color: ${({ isClicked, theme }) => (isClicked ? theme.palette.Primary : theme.palette.Grey.Grey3)};
 	border-radius: 8px;
 
 	${({ isClicked, size, theme }) =>
@@ -107,7 +107,7 @@ const BtnDateLayout = styled.div<{
         css`
 			padding-right: ${size === 'big' ? '0.6rem' : '0.2rem'};
 
-			border-color: ${theme.palette.PRIMARY};
+			border-color: ${theme.palette.Primary};
 			border-width: 2px;
 		`}
 
@@ -117,29 +117,27 @@ const BtnDateLayout = styled.div<{
 			border-width: 0;
 
 			${TextWrapper} {
-				color: ${theme.palette.WITHE};
+				color: ${theme.palette.Grey.White};
 			}
 		`}
 
 	&:hover {
-		color: ${({ isPressed, theme }) => (isPressed ? theme.palette.WITHE : theme.palette.GREY_06)};
-
-		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.GREY_05 : theme.palette.GREY_04)};
-		border-width: 0;
+		color: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey6)};
+		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey3)};
 
 		${TextWrapper} {
 			color: ${({ isDefaultDate, isDefaultTime, theme }) =>
-        isDefaultDate || isDefaultTime ? theme.palette.GREY_06 : theme.palette.BLACK};
+				isDefaultDate || isDefaultTime ? theme.palette.Grey.Grey6 : theme.palette.Grey.Black};
 		}
 	}
 
 	&:hover ${CalanderIcon}, &:hover ${ClockIcon}, &:hover ${LineIcon} {
 		path {
-			stroke: ${({ isPressed, theme }) => (isPressed ? theme.palette.GREY_04 : theme.palette.GREY_05)};
+			stroke: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5)};
 		}
 
 		line {
-			stroke: ${({ isPressed, theme }) => (isPressed ? theme.palette.GREY_04 : theme.palette.GREY_05)};
+			stroke: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey4 : theme.palette.Grey.Grey5)};
 		}
 	}
 `;

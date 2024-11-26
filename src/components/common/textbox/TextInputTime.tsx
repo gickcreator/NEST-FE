@@ -19,12 +19,13 @@ function TextInputTime({ time }: TextInputTimeProps) {
 const InputTimeLayout = styled.div<{ time: string }>`
 	display: flex;
 	align-items: center;
+	box-sizing: border-box;
 	width: ${({ time }) => (time === 'total' ? '3.6rem' : '11.5rem')};
 	height: 3.2rem;
 	padding: 0.4rem 1rem;
 
 	${({ theme }) => theme.fontTheme.BODY_02};
-	background-color: ${({ theme, time }) => (time !== 'total' ? theme.palette.GRAY_DISABLED : theme.palette.WITHE)};
+	background-color: ${({ theme, time }) => (time !== 'total' ? theme.palette.Grey.Grey1 : theme.palette.Grey.White)};
 	border-radius: 8px;
 `;
 const ArrowIcon = styled(Icons.Icn_arrow_narrow_right)`
@@ -36,10 +37,11 @@ const MinuteTxt = styled.p`
 	padding-left: 0.4rem;
 `;
 const InputTimeStyle = styled.input<{ time: string }>`
+	box-sizing: border-box;
 	width: ${({ time }) => (time === 'total' ? '3.6rem' : '100%')};
-	height: 100%;
+	padding: 0.4rem 0.8rem;
 
-	background-color: ${({ theme, time }) => (time === 'total' ? theme.palette.GRAY_DISABLED : 'transparent')};
+	background-color: ${({ theme, time }) => (time === 'total' ? theme.palette.Grey.Grey1 : 'transparent')};
 	border: none;
 	border-radius: 8px;
 
