@@ -11,18 +11,23 @@ import CorrectionCustomHeader from './CorrectionCustomHeader';
 import CalendarStyle from './DatePickerStyle';
 
 import formatDatetoString from '@/utils/formatDatetoString';
+import { blurRef } from '@/utils/refStatus';
 
 function DateCorrectionModal({ isDateOnly }: { isDateOnly: boolean }) {
     const prevDate: Date = new Date();
     const [currentDate, setCurrentDate] = useState<Date | null>(null);
+    // const [time, setTime] = useState<string>('');
     const dateTextRef = useRef<HTMLInputElement>(null);
     const timeTextRef = useRef<HTMLInputElement>(null);
     const onChange = (date: Date | null) => {
         setCurrentDate(date);
         if (dateTextRef.current) {
-            dateTextRef.current.value = formatDatetoString(date);
+            const inputElement = dateTextRef.current.querySelector('input');
+            if (inputElement) inputElement.value = formatDatetoString(date);
+            blurRef(dateTextRef);
         }
     };
+
     return (
         <DatePicker
             locale={ko}
