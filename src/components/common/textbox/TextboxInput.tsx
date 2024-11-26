@@ -3,7 +3,10 @@ import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
 import { theme } from '@/styles/theme';
+import checkDateFormat from '@/utils/checkDateFormat';
+import checkTimeFormat from '@/utils/checkTimeFormat';
 import dotFormatDate from '@/utils/dotFormatDate';
+import dotFormatTime from '@/utils/dotFormatTime';
 import formatDatetoString from '@/utils/formatDatetoString';
 
 interface TextboxInputProps {
@@ -14,12 +17,31 @@ interface TextboxInputProps {
 }
 function TextboxInput({ variant, dateValue, onChange, dateTextRef }: TextboxInputProps) {
 	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (onChange) {
+		if ((variant === 'date' || variant === 'smallDate') && onChange) {
 			const formattedInput = dotFormatDate(e.target.value);
 			e.target.value = formattedInput;
+
 			if (formattedInput && formattedInput.length > 9) {
-				const valueDate = new Date(formattedInput);
-				onChange(valueDate);
+				if (!checkDateFormat(formattedInput)) {
+					alert('유효한 날짜가 아님');
+					e.target.value = '';
+				} else {
+					const valueDate = new Date(formattedInput);
+					onChange(valueDate);
+				}
+			}
+		}
+
+		if (variant === 'time') {
+			const formattedInput = dotFormatTime(e.target.value);
+			e.target.value = formattedInput;
+
+			// 유효한 시간인지 검사
+			if (formattedInput && formattedInput.length > 4) {
+				if (!checkTimeFormat(formattedInput)) {
+					alert('유효한 시간이 아님');
+					e.target.value = '';
+				}
 			}
 		}
 	};
@@ -54,6 +76,7 @@ const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 	display: flex;
 	gap: 0.5rem;
 	align-items: center;
+	box-sizing: border-box;
 	width: 15.4rem;
 	height: 2.6rem;
 	padding: 0.3rem 1rem;

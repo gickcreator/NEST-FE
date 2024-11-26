@@ -103,7 +103,7 @@ function BtnTask(props: BtnTaskProps) {
 					{isDescription && <IconFile />}
 					오소기 발표 진행하기
 				</BtnTaskTextWrapper>
-				<BtnDate date="2024.07.11" time="22:22" size="small" isDelayed={btnType === 'delayed'} />
+				<BtnDate date="2024.11.26" time="22:22" size="small" isDelayed={btnType === 'delayed'} />
 			</BtnTaskContainer>
 			<IconHoverContainer
 				onClick={handleIconClick}
