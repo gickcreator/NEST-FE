@@ -56,13 +56,16 @@ export default BtnDate;
 const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean; size: string }) => {
 	const { isClicked, ...rest } = props;
 	return <Icons.IcnXCricle {...rest} />;
-})<{ isClicked: boolean }>`
+}) <{ isClicked: boolean }>`
 	display: ${({ isClicked }) => (isClicked ? 'flex' : 'none')};
 	width: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
 	height: ${({ size }) => (size === 'big' ? '2rem' : '1.6rem')};
 `;
 
-const CalanderIcon = styled(Icons.Icn_calander, { target: 'CalanderIcon' })<{ isDelayed: boolean }>`
+const CalanderIcon = styled(Icons.Icn_calander, {
+	target: 'CalanderIcon',
+	shouldForwardProp: (prop) => prop !== 'isDelayed',
+}) <{ isDelayed: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -74,7 +77,10 @@ const CalanderIcon = styled(Icons.Icn_calander, { target: 'CalanderIcon' })<{ is
 	}
 `;
 
-const ClockIcon = styled(Icons.Icn_date_clock, { target: 'ClockIcon' })<{ isDelayed: boolean }>`
+const ClockIcon = styled(Icons.Icn_date_clock, {
+	target: 'ClockIcon',
+	shouldForwardProp: (prop) => prop !== 'isDelayed',
+}) <{ isDelayed: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -86,7 +92,10 @@ const ClockIcon = styled(Icons.Icn_date_clock, { target: 'ClockIcon' })<{ isDela
 	}
 `;
 
-const LineIcon = styled(Icons.Icn_line, { target: 'LineIcon' })<{ size: string; isDelayed: boolean }>`
+const LineIcon = styled(Icons.Icn_line, {
+	target: 'LineIcon',
+	shouldForwardProp: (prop) => prop !== 'isDelayed' && prop !== 'size',
+}) <{ size: string; isDelayed: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -160,11 +169,11 @@ const BtnDateLayout = styled.div<{
 
 		background: ${({ isPressed, theme }) => (isPressed ? theme.palette.Grey.Grey5 : theme.palette.Grey.Grey4)};
 		box-shadow: ${({ isPressed, theme }) =>
-			isPressed ? `1px 0 0 0 ${theme.palette.Grey.Grey5} inset` : `1px 0 0 0 ${theme.palette.Grey.Grey4} inset`};
+		isPressed ? `1px 0 0 0 ${theme.palette.Grey.Grey5} inset` : `1px 0 0 0 ${theme.palette.Grey.Grey4} inset`};
 
 		${TextWrapper} {
 			color: ${({ isDefaultDate, isDefaultTime, theme }) =>
-				isDefaultDate || isDefaultTime ? theme.palette.Grey.Grey6 : theme.palette.Grey.Black};
+		isDefaultDate || isDefaultTime ? theme.palette.Grey.Grey6 : theme.palette.Grey.Black};
 		}
 	}
 
