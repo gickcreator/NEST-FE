@@ -7,51 +7,51 @@ import BtnDateText, { TextWrapper } from './BtnDateText';
 import Icons from '@/assets/svg/index';
 
 interface BtnDateProps {
-    date?: string;
-    time?: string;
-    size?: string;
+	date?: string;
+	time?: string;
+	size?: string;
 }
 
 function BtnDate(props: BtnDateProps) {
-    const { date = '마감 기한', time = '마감 시간', size = 'big' } = props;
-    const [isPressed, setIsPressed] = useState(false);
-    const [isClicked, setIsClicked] = useState(false);
+	const { date = '마감 기한', time = '마감 시간', size = 'big' } = props;
+	const [isPressed, setIsPressed] = useState(false);
+	const [isClicked, setIsClicked] = useState(false);
 
-    const handleMouseDown = () => {
-        setIsPressed(true);
-    };
+	const handleMouseDown = () => {
+		setIsPressed(true);
+	};
 
-    const handleMouseUp = () => {
-        setIsPressed(false);
-        setIsClicked((prev) => !prev);
-    };
+	const handleMouseUp = () => {
+		setIsPressed(false);
+		setIsClicked((prev) => !prev);
+	};
 
-    const isDefaultDate = date === '마감 기한';
-    const isDefaultTime = time === '마감 시간';
+	const isDefaultDate = date === '마감 기한';
+	const isDefaultTime = time === '마감 시간';
 
-    return (
-        <BtnDateLayout
-            isPressed={isPressed}
-            isClicked={isClicked}
-            size={size}
-            isDefaultDate={isDefaultDate}
-            isDefaultTime={isDefaultTime}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-        >
-            <BtnDateText icon={<CalanderIcon />} text={date} isDefault={isDefaultDate} size={size} />
-            <LineIcon size={size} />
-            <BtnDateText icon={<ClockIcon />} text={time} isDefault={isDefaultTime} size={size} />
-            <XIcon isClicked={isClicked} />
-        </BtnDateLayout>
-    );
+	return (
+		<BtnDateLayout
+			isPressed={isPressed}
+			isClicked={isClicked}
+			size={size}
+			isDefaultDate={isDefaultDate}
+			isDefaultTime={isDefaultTime}
+			onMouseDown={handleMouseDown}
+			onMouseUp={handleMouseUp}
+		>
+			<BtnDateText icon={<CalanderIcon />} text={date} isDefault={isDefaultDate} size={size} />
+			<LineIcon size={size} />
+			<BtnDateText icon={<ClockIcon />} text={time} isDefault={isDefaultTime} size={size} />
+			<XIcon isClicked={isClicked} />
+		</BtnDateLayout>
+	);
 }
 
 export default BtnDate;
 
 const XIcon = styled((props: React.SVGProps<SVGSVGElement> & { isClicked: boolean }) => {
-    const { isClicked, ...rest } = props;
-    return <Icons.IcnXCricle {...rest} />;
+	const { isClicked, ...rest } = props;
+	return <Icons.IcnXCricle {...rest} />;
 }) <{ isClicked: boolean }>`
 	display: ${({ isClicked }) => (isClicked ? 'flex' : 'none')};
 	width: 2rem;
@@ -83,11 +83,11 @@ const LineIcon = styled(Icons.Icn_line, { target: 'LineIcon' }) <{ size: string 
 `;
 
 const BtnDateLayout = styled.div<{
-    isPressed: boolean;
-    isClicked: boolean;
-    size: string;
-    isDefaultDate: boolean;
-    isDefaultTime: boolean;
+	isPressed: boolean;
+	isClicked: boolean;
+	size: string;
+	isDefaultDate: boolean;
+	isDefaultTime: boolean;
 }>`
 	display: flex;
 	gap: 1rem;
@@ -103,8 +103,8 @@ const BtnDateLayout = styled.div<{
 	border-radius: 8px;
 
 	${({ isClicked, size, theme }) =>
-        isClicked &&
-        css`
+		isClicked &&
+		css`
 			padding-right: ${size === 'big' ? '0.6rem' : '0.2rem'};
 
 			border-color: ${theme.palette.Primary};
@@ -112,8 +112,8 @@ const BtnDateLayout = styled.div<{
 		`}
 
 	${({ isPressed, theme }) =>
-        isPressed &&
-        css`
+		isPressed &&
+		css`
 			border-width: 0;
 
 			${TextWrapper} {

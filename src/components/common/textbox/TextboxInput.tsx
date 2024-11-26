@@ -13,7 +13,7 @@ function TextboxInput({ variant }: TextboxInputProps) {
 			{variant === 'time' && <ClockIcon />}
 			<StyledInput
 				type="text"
-				placeholder={variant === 'time' ? '시간 없음' : '2024.07.11'}
+				placeholder={variant === 'time' ? '시간 없음' : '2024.11.26'}
 				maxLength={10}
 				variant={variant}
 			/>

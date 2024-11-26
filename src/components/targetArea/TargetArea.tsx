@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import TargetAreaDate from './TargetAreaDate.tsx';
-import TargetControlSection from './TargetControlSection.tsx';
-import TargetTaskSection from './TargetTaskSection.tsx';
+import TargetAreaDate from './TargetAreaDate';
+import TargetControlSection from './TargetControlSection';
+import TargetTaskSection from './TargetTaskSection';
 
 function TargetArea() {
     return (

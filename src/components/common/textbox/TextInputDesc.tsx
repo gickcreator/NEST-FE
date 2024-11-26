@@ -10,6 +10,7 @@ const TextInputDescLayout = styled.textarea<{ type: string }>`
 	box-sizing: border-box;
 	width: ${({ type }) => (type === 'long' ? '34.8rem' : '30.4rem')};
 	height: ${({ type }) => (type === 'long' ? '14.5rem' : '18rem')};
+	padding: 1.2rem;
 
 	${({ theme }) => theme.fontTheme.BODY_02};
 	border: solid 1px ${({ theme }) => theme.palette.Grey.Grey3};

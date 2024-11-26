@@ -20,7 +20,7 @@ const InputTimeLayout = styled.div<{ time: string }>`
 	display: flex;
 	align-items: center;
 	box-sizing: border-box;
-	width: ${({ time }) => (time === 'total' ? '3.6rem' : '11.5rem')};
+	width: ${({ time }) => (time === 'total' ? '6rem' : '11.5rem')};
 	height: 3.2rem;
 	padding: 0.4rem 1rem;
 
@@ -37,6 +37,7 @@ const MinuteTxt = styled.p`
 	padding-left: 0.4rem;
 `;
 const InputTimeStyle = styled.input<{ time: string }>`
+	${({ theme }) => theme.fontTheme.BODY_02};
 	box-sizing: border-box;
 	width: ${({ time }) => (time === 'total' ? '3.6rem' : '100%')};
 	padding: 0.4rem 0.8rem;

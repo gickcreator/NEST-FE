@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
 function BtnStagingDate() {
-    return (
-        <BtnStagingDateLayout>
-            <BtnStagingDateText>⇥ 마감 기한 설정</BtnStagingDateText>
-        </BtnStagingDateLayout>
-    );
+	return (
+		<BtnStagingDateLayout>
+			<BtnStagingDateText>⇥ 마감 기한 설정</BtnStagingDateText>
+		</BtnStagingDateLayout>
+	);
 }
 
 export default BtnStagingDate;
