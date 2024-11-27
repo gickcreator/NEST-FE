@@ -1,41 +1,103 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { SizeType } from '@/types/textInputType';
-import getNameOfDay from '@/utils/getNameOfDay';
+import Icons from '@/assets/svg/index';
+import { theme } from '@/styles/theme';
+import checkDateFormat from '@/utils/checkDateFormat';
+import checkTimeFormat from '@/utils/checkTimeFormat';
+import dotFormatDate from '@/utils/dotFormatDate';
+import dotFormatTime from '@/utils/dotFormatTime';
+import { blurRef, focusRef, warnRef } from '@/utils/refStatus';
 
-function TextboxDailydate({ type }: SizeType) {
-	const today = new Date();
-	const date = today.getDate();
-	const dayOfTheWeek = today.getDay();
-
+interface TextboxInputProps {
+	variant: 'date' | 'time' | 'smallDate';
+	onChange?: (date: Date) => void;
+	dateTextRef?: React.RefObject<HTMLInputElement>;
+	placeholder?: string;
+}
+function TextboxInput({ variant, onChange, dateTextRef, placeholder }: TextboxInputProps) {
+	const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = e.target;
+		const formattedInput = variant === 'time' ? dotFormatTime(value) : dotFormatDate(value);
+		e.target.value = formattedInput;
+		if (dateTextRef) focusRef(dateTextRef);
+		if (formattedInput && formattedInput.length > (variant === 'time' ? 4 : 9)) {
+			const isValid = variant === 'time' ? checkTimeFormat(formattedInput) : checkDateFormat(formattedInput);
+			if (!isValid && dateTextRef) {
+				// 유효하지 않음
+				warnRef(dateTextRef);
+				// 유효하지 않은 경우 인풋 삭제 필요?
+				e.target.value = '';
+			} else if ((variant === 'date' || variant === 'smallDate') && onChange) {
+				// 유효하고 date 인 경우
+				const valueDate = new Date(formattedInput);
+				if (dateTextRef) blurRef(dateTextRef);
+				onChange(valueDate);
+			} else if (dateTextRef) {
+				// 유효하고 time 인 경우
+				blurRef(dateTextRef);
+			}
+		}
+	};
 	return (
-		<DailydateLayout type={type}>
-			<DailydateContainer>
-				<DateText>{date}일</DateText>
-				{/* CAPTION_02 추가 후 수정 필요 */}
-				<DayText>{getNameOfDay(dayOfTheWeek)}</DayText>
-			</DailydateContainer>
-		</DailydateLayout>
+		<InputContainer variant={variant} ref={dateTextRef}>
+			{variant === 'time' && <ClockIcon />}
+			<StyledInput
+				type="text"
+				placeholder={variant === 'time' ? '시간 없음' : placeholder}
+				maxLength={10}
+				variant={variant}
+				onChange={handleDateChange}
+			/>
+		</InputContainer>
 	);
 }
+const smallDateStyle = css`
+	width: 7.5rem;
+	padding: 0;
+`;
+const smallDateInputStyle = css`
+	padding: 0;
 
-const DailydateLayout = styled.div<{ type: string }>`
+	text-align: center;
+
+	&:focus {
+		outline: solid 1px ${theme.palette.Primary};
+	}
+`;
+const InputContainer = styled.div<{ variant: 'date' | 'time' | 'smallDate' }>`
 	display: flex;
+	gap: 0.5rem;
 	align-items: center;
-	width: ${({ type }) => (type === 'long' ? '84rem' : '53.2rem')};
-	height: 5.6rem;
-	padding: 4px 8px;
+	box-sizing: border-box;
+	width: 15.4rem;
+	height: 2.6rem;
+	padding: 0.3rem 1rem;
+
+	background-color: ${({ theme }) => theme.palette.Grey.Grey1};
+	border-radius: 8px;
+
+	${({ variant }) => variant === 'smallDate' && smallDateStyle}
 `;
-const DailydateContainer = styled.div`
-	display: flex;
-	gap: 1.2rem;
-	align-items: baseline;
-`;
-const DateText = styled.h1`
-	${({ theme }) => theme.fontTheme.HEADLINE_01};
-`;
-const DayText = styled.p`
+const StyledInput = styled.input<{ variant: 'date' | 'time' | 'smallDate' }>`
+	width: 100%;
+	height: 100%;
+
 	${({ theme }) => theme.fontTheme.CAPTION_01};
-	color: ${({ theme }) => theme.palette.GREY_04};
+	background-color: transparent;
+	border: none;
+	border-radius: 8px;
+
+	&:focus {
+		outline: none;
+	}
+
+	${({ variant }) => variant === 'smallDate' && smallDateInputStyle}
 `;
-export default TextboxDailydate;
+
+const ClockIcon = styled(Icons.Icn_clock)`
+	width: 1.4rem;
+	height: 1.4rem;
+`;
+
+export default TextboxInput;

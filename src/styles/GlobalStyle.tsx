@@ -1,7 +1,7 @@
 import { Global, css } from '@emotion/react';
 
 const fonts = {
-  Pretendard: 'Pretendard-Medium',
+	Pretendard: 'Pretendard-Medium',
 };
 
 const style = css`
@@ -147,10 +147,14 @@ const style = css`
 	html {
 		font-size: 62.5%;
 	}
+
+	:root {
+		--fc-highlight-color: #dfe9ff;
+	}
 `;
 
 function GlobalStyle() {
-  return <Global styles={style} />;
+	return <Global styles={style} />;
 }
 
 export default GlobalStyle;
