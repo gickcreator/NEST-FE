@@ -11,8 +11,15 @@ import CorrectionCustomHeader from './CorrectionCustomHeader';
 import CalendarStyle from './DatePickerStyle';
 
 import formatDatetoString from '@/utils/formatDatetoString';
+import { blurRef } from '@/utils/refStatus';
 
-function DateCorrectionModal({ isDateOnly = false }: { isDateOnly?: boolean }) {
+interface DateCorrectionModalProps {
+	isDateOnly?: boolean;
+	top?: number;
+	left?: number;
+}
+
+function DateCorrectionModal({ isDateOnly = false, top = 0, left = 0 }: DateCorrectionModalProps) {
 	const prevDate: Date = new Date();
 	const [currentDate, setCurrentDate] = useState<Date | null>(null);
 
@@ -21,12 +28,14 @@ function DateCorrectionModal({ isDateOnly = false }: { isDateOnly?: boolean }) {
 	const onChange = (date: Date | null) => {
 		setCurrentDate(date);
 		if (dateTextRef.current) {
-			dateTextRef.current.value = formatDatetoString(date);
+			const inputElement = dateTextRef.current.querySelector('input');
+			if (inputElement) inputElement.value = formatDatetoString(date);
+			blurRef(dateTextRef);
 		}
 	};
 
 	return (
-		<DateCorrectionModalLayout>
+		<DateCorrectionModalLayout top={top} left={left} onClick={(e) => e.stopPropagation()}>
 			<DatePicker
 				locale={ko}
 				selected={currentDate}
@@ -46,10 +55,10 @@ function DateCorrectionModal({ isDateOnly = false }: { isDateOnly?: boolean }) {
 	);
 }
 
-const DateCorrectionModalLayout = styled.div`
+const DateCorrectionModalLayout = styled.div<{ top: number; left: number }>`
 	position: absolute;
-	bottom: 7.6rem;
-	left: -1.1rem;
+	top: ${({ top }) => top}rem;
+	left: ${({ left }) => left}rem;
 	z-index: 4;
 `;
 
