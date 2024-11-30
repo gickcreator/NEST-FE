@@ -9,23 +9,41 @@ import IconHoverContainer from './IconHoverContainer';
 import Icons from '@/assets/svg/index';
 import BtnDate from '@/components/common/BtnDate/BtnDate';
 import MODAL from '@/constants/modalLocation';
+import { theme } from '@/styles/theme';
 import { TaskType } from '@/types/tasks/taskType';
 
 interface BtnTaskProps extends TaskType {
-	btnType: 'staging' | 'target' | 'delayed';
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	iconType: 'stagingOrDelayed' | 'active';
+	btnStatus?: '진행중' | '미완료' | '완료' | '오늘로추가';
+	preventDoubleClick?: boolean;
+	isDragging?: boolean;
 }
 
 interface BorderColorProps {
 	isHovered: boolean;
 	isClicked: boolean;
 	theme: Theme;
-	btnType: string;
+	iconType: string;
+	status: string;
+	isDragging?: boolean;
 }
 
 function BtnTask(props: BtnTaskProps) {
-	const { id, btnType, name, deadLine, hasDescription, status, handleSelectedTarget, selectedTarget } = props;
+	const {
+		id,
+		name,
+		deadLine,
+		hasDescription,
+		status,
+		handleSelectedTarget,
+		selectedTarget,
+		iconType,
+		btnStatus,
+		preventDoubleClick = false,
+		isDragging = false,
+	} = props;
 	const [isModalOpen, setModalOpen] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
 
@@ -42,6 +60,10 @@ function BtnTask(props: BtnTaskProps) {
 
 	/** 모달 띄우기 */
 	const handleDoubleClick = (e: React.MouseEvent) => {
+		if (preventDoubleClick) {
+			e.preventDefault();
+			return;
+		}
 		const rect = e.currentTarget.getBoundingClientRect();
 		const calculatedTop = rect.top;
 		const adjustedTop = Math.min(calculatedTop, MODAL.SCREEN_HEIGHT - MODAL.TASK_MODAL_HEIGHT);
@@ -76,9 +98,12 @@ function BtnTask(props: BtnTaskProps) {
 			<BtnTaskLayout
 				isClicked={selectedTarget?.id === id}
 				isHovered={isHovered}
-				btnType={btnType}
+				iconType={iconType}
 				onDoubleClick={handleDoubleClick}
 				onClick={handleClick}
+				theme={theme}
+				status={status}
+				isDragging={isDragging}
 			>
 				<BtnTaskContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 					<BtnTaskTextWrapper isDescription={hasDescription}>
@@ -86,28 +111,39 @@ function BtnTask(props: BtnTaskProps) {
 						{name}
 					</BtnTaskTextWrapper>
 					<BtnDate
-						date={deadLine?.date}
-						time={deadLine?.time}
+						date={deadLine?.date || null}
+						time={deadLine?.time || null}
 						size={{ type: 'short' }}
-						isDelayed={btnType === 'delayed'}
+						isDelayed={status === '지연'}
 					/>
 				</BtnTaskContainer>
-				<IconHoverContainer btnType={btnType} status={status} />
+				<IconHoverContainer iconType={iconType} btnStatus={btnStatus} status={status} />
 			</BtnTaskLayout>
-			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
+			<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} taskId={id} />
 		</ModalLayout>
 	);
 }
 
 export default BtnTask;
 
-const getBorderColor = ({ isHovered, isClicked, theme, btnType }: BorderColorProps) => {
+const draggingStyle = (theme: Theme) => css`
+	background: ${theme.palette.Grey.White};
+	box-shadow: 0 16px 35px 0 rgb(72 87 120 / 25%);
+	border: 1px solid ${theme.palette.Blue.Blue7};
+	border-radius: 8px;
+`;
+
+const getBorderColor = ({ isHovered, isClicked, theme, status, isDragging }: BorderColorProps) => {
 	const defaultColor = theme.palette.Grey.Grey1;
 	const hoverColor = theme.palette.Blue.Blue3;
 	const clickColor = theme.palette.Primary;
 	const orangeColor = theme.palette.Orange.Orange8;
 	let borderColor = defaultColor;
-	if (btnType === 'delayed') {
+	if (isDragging && status !== '지연') {
+		return draggingStyle(theme);
+	}
+
+	if (status === '지연') {
 		borderColor = orangeColor;
 	} else if (isClicked) {
 		borderColor = clickColor;
@@ -123,11 +159,7 @@ const ModalLayout = styled.div`
 	display: flex;
 `;
 
-const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' }) <{
-	isClicked: boolean;
-	isHovered: boolean;
-	btnType: string;
-}>`
+const BtnTaskLayout = styled('div', { target: 'BtnTaskLayout' })`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
