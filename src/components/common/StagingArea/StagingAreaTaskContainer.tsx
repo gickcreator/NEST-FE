@@ -6,7 +6,11 @@ import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetti
 import { TaskType } from '@/types/tasks/taskType';
 import BtnTaskContainer from '../BtnTaskContainer';
 
-function StagingAreaTaskContainer() {
+interface StagingAreaTaskContainerProps {
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
+}
+function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: StagingAreaTaskContainerProps) {
 	const dummyTaskList: TaskType[] = [
 		{
 			id: 0,
@@ -143,6 +147,8 @@ function StagingAreaTaskContainer() {
 						name={task.name}
 						status={task.status}
 						deadLine={task.deadLine}
+						selectedTarget={selectedTarget}
+						handleSelectedTarget={handleSelectedTarget}
 					/>
 				))}
 				<ScrollGradient />

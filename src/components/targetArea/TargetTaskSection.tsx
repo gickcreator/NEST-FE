@@ -4,7 +4,12 @@ import ScrollGradient from '../common/ScrollGradient';
 import { TaskType } from '@/types/tasks/taskType';
 import BtnTaskContainer from '../common/BtnTaskContainer';
 
-function TargetTaskSection() {
+interface TargetTaskSectionProps {
+	handleSelectedTarget: (task: TaskType | null) => void;
+	selectedTarget: TaskType | null;
+}
+
+function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskSectionProps) {
 	const dummyTaskList: TaskType[] = [
 		{
 			id: 0,
@@ -59,6 +64,8 @@ function TargetTaskSection() {
 					deadLine={task.deadLine}
 					status={task.status}
 					id={task.id}
+					handleSelectedTarget={handleSelectedTarget}
+					selectedTarget={selectedTarget}
 				/>
 			))}
 			<ScrollGradient />
