@@ -4,6 +4,7 @@ import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
 import DASHBOARD_TASK_TYPE from '@/constants/dashboardTask';
 import TODAY from '@/constants/tasksToday';
+import { TaskType } from '@/types/tasks/taskType';
 
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
@@ -18,6 +19,49 @@ function DashboardTask({ text }: DashboardTaskProps) {
 	} else if (text === 'inprogress') {
 		taskStatus = DASHBOARD_TASK_TYPE.INPROGRESS;
 	}
+
+	const dummyTaskList: TaskType[] = [
+		{
+			id: 10,
+			name: '오소기',
+			deadLine: {
+				date: '2024-11-11',
+				time: '12:21',
+			},
+			hasDescription: false,
+			status: '진행중',
+		},
+		{
+			id: 11,
+			name: '프론트엔드 개발',
+			deadLine: {
+				date: '2024-11-24',
+				time: '09:30',
+			},
+			hasDescription: true,
+			status: '지연',
+		},
+		{
+			id: 12,
+			name: '백엔드 개발',
+			deadLine: {
+				date: '2024-11-30',
+				time: '15:00',
+			},
+			hasDescription: false,
+			status: '진행중',
+		},
+		{
+			id: 13,
+			name: '프로젝트 완성',
+			deadLine: {
+				date: '2024-12-18',
+				time: '09:00',
+			},
+			hasDescription: true,
+			status: '진행중',
+		}
+	];
 	return (
 		<TaskLayout>
 			<TextBox>
@@ -28,13 +72,17 @@ function DashboardTask({ text }: DashboardTaskProps) {
 				</NumberTextBox>
 			</TextBox>
 			<ScrollArea>
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
-				<BtnTask btnType="target" status="Done" isDescription={false} />
+				{dummyTaskList.map((task) => (
+					<BtnTask
+						key={task.id + task.name}
+						hasDescription={task.hasDescription}
+						id={task.id}
+						name={task.name}
+						status={task.status}
+						deadLine={task.deadLine}
+						btnType="target"
+					/>
+				))}
 				<ScrollGradient />
 			</ScrollArea>
 		</TaskLayout>
@@ -47,6 +95,7 @@ const TaskLayout = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	align-self: stretch;
+	box-sizing: border-box;
 	width: 41.7rem;
 	height: 41rem;
 
