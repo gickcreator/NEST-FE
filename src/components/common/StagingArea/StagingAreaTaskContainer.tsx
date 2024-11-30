@@ -1,157 +1,50 @@
 import styled from '@emotion/styled';
+import { Draggable } from 'react-beautiful-dnd';
+
+import BtnTaskContainer from '../BtnTaskContainer';
 
 import BtnTask from '@/components/common/BtnTask/BtnTask';
-import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetting';
 import { TaskType } from '@/types/tasks/taskType';
-import BtnTaskContainer from '../BtnTaskContainer';
 
 interface StagingAreaTaskContainerProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	tasks: TaskType[];
 }
-function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: StagingAreaTaskContainerProps) {
-	const dummyTaskList: TaskType[] = [
-		{
-			id: 0,
-			name: '밥먹기',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: false,
-			status: '진행중',
-		},
-		{
-			id: 1,
-			name: '오소기 발표 준비',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '지연',
-		},
-		{
-			id: 2,
-			name: '이시하',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '완료',
-		},
-		{
-			id: 3,
-			name: '조영주',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '미완료',
-		},
-		{
-			id: 0,
-			name: '안은소',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: false,
-			status: '진행중',
-		},
-		{
-			id: 1,
-			name: '오픈',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '지연',
-		},
-		{
-			id: 2,
-			name: '소스',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '완료',
-		},
-		{
-			id: 3,
-			name: '실습',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '미완료',
-		},
-		{
-			id: 0,
-			name: '발표',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: false,
-			status: '진행중',
-		},
-		{
-			id: 1,
-			name: '준비',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '지연',
-		},
-		{
-			id: 2,
-			name: '야호',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '완료',
-		},
-		{
-			id: 3,
-			name: 'test',
-			deadLine: {
-				date: '2024-11-30',
-				time: '12:30',
-			},
-			hasDescription: true,
-			status: '미완료',
-		},
-	];
+
+function StagingAreaTaskContainer(props: StagingAreaTaskContainerProps) {
+	const { handleSelectedTarget, selectedTarget, tasks } = props;
 
 	return (
 		<StagingAreaTaskContainerLayout>
 			<StagingAreaSetting />
 			<BtnTaskContainer type="staging">
-				{dummyTaskList.map((task) => (
-					<BtnTask
-						key={task.id + task.name}
-						btnType="staging"
-						hasDescription={task.hasDescription}
-						id={task.id}
-						name={task.name}
-						status={task.status}
-						deadLine={task.deadLine}
-						selectedTarget={selectedTarget}
-						handleSelectedTarget={handleSelectedTarget}
-					/>
+				{tasks.map((task, index) => (
+					<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
+						{(provided, snapshot) => (
+							<div
+								ref={provided.innerRef}
+								{...provided.draggableProps}
+								{...provided.dragHandleProps}
+								style={{ userSelect: 'none', ...provided.draggableProps.style }}
+							>
+								<BtnTask
+									key={task.id + task.name}
+									iconType="stagingOrDelayed"
+									hasDescription={task.hasDescription}
+									id={task.id}
+									name={task.name}
+									status={task.status}
+									deadLine={task.deadLine}
+									selectedTarget={selectedTarget}
+									handleSelectedTarget={handleSelectedTarget}
+									isDragging={snapshot.isDragging}
+								/>
+							</div>
+						)}
+					</Draggable>
 				))}
-				<ScrollGradient />
 			</BtnTaskContainer>
 		</StagingAreaTaskContainerLayout>
 	);
