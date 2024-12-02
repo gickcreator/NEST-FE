@@ -7,13 +7,14 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { DateSelectArg } from 'fullcalendar/index.js';
 import { useState, useRef, useEffect } from 'react';
 
+import Modal from '../modal/Modal';
+
 import RefreshBtn from '@/components/common/button/RefreshBtn';
 import DayHeaderContent from '@/components/common/fullCalendar/DayHeaderContent';
 import FullCalendarLayout from '@/components/common/fullCalendar/FullCalendarStyle';
 import { customDayCellContent, customSlotLabelContent } from '@/components/common/fullCalendar/fullCalendarUtils';
-import Modal from '../modal/Modal';
-import { TaskType } from '@/types/tasks/taskType';
 import MODAL from '@/constants/modalLocation';
+import { TaskType } from '@/types/tasks/taskType';
 
 interface FullCalendarBoxProps {
 	size: 'small' | 'big';
@@ -172,7 +173,15 @@ function FullCalendarBox({ size, selectDate, selectedTarget }: FullCalendarBoxPr
 				select={addEventWhenDragged}
 			/>
 			{isModalOpen && (
-				<Modal isOpen={isModalOpen} sizeType={{ type: 'short' }} top={top} left={left} onClose={closeModal} />
+				// 🚨 임시 taskID ... 데이터 형식 확정 후 수정할 것 🚨
+				<Modal
+					isOpen={isModalOpen}
+					sizeType={{ type: 'short' }}
+					top={top}
+					left={left}
+					onClose={closeModal}
+					taskId={5}
+				/>
 			)}
 		</FullCalendarLayout>
 	);

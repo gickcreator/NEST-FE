@@ -1,50 +1,48 @@
 import styled from '@emotion/styled';
-import { Draggable } from 'react-beautiful-dnd';
 
 import BtnTaskContainer from '../BtnTaskContainer';
 
 import BtnTask from '@/components/common/BtnTask/BtnTask';
+import ScrollGradient from '@/components/common/ScrollGradient';
 import StagingAreaSetting from '@/components/common/StagingArea/StagingAreaSetting';
 import { TaskType } from '@/types/tasks/taskType';
 
 interface StagingAreaTaskContainerProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
-	tasks: TaskType[];
 }
-
-function StagingAreaTaskContainer(props: StagingAreaTaskContainerProps) {
-	const { handleSelectedTarget, selectedTarget, tasks } = props;
+function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: StagingAreaTaskContainerProps) {
+	const dummyTaskList: TaskType[] = [
+		{
+			id: 4,
+			name: '안은소',
+			deadLine: {
+				date: '2024-12-30',
+				time: '12:30',
+			},
+			hasDescription: true,
+			status: '미완료',
+		},
+	];
 
 	return (
 		<StagingAreaTaskContainerLayout>
 			<StagingAreaSetting />
 			<BtnTaskContainer type="staging">
-				{tasks.map((task, index) => (
-					<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
-						{(provided, snapshot) => (
-							<div
-								ref={provided.innerRef}
-								{...provided.draggableProps}
-								{...provided.dragHandleProps}
-								style={{ userSelect: 'none', ...provided.draggableProps.style }}
-							>
-								<BtnTask
-									key={task.id + task.name}
-									iconType="stagingOrDelayed"
-									hasDescription={task.hasDescription}
-									id={task.id}
-									name={task.name}
-									status={task.status}
-									deadLine={task.deadLine}
-									selectedTarget={selectedTarget}
-									handleSelectedTarget={handleSelectedTarget}
-									isDragging={snapshot.isDragging}
-								/>
-							</div>
-						)}
-					</Draggable>
+				{dummyTaskList.map((task) => (
+					<BtnTask
+						key={task.id + task.name}
+						btnType="staging"
+						hasDescription={task.hasDescription}
+						id={task.id}
+						name={task.name}
+						status={task.status}
+						deadLine={task.deadLine}
+						selectedTarget={selectedTarget}
+						handleSelectedTarget={handleSelectedTarget}
+					/>
 				))}
+				<ScrollGradient />
 			</BtnTaskContainer>
 		</StagingAreaTaskContainerLayout>
 	);
