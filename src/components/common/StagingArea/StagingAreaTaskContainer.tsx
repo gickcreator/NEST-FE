@@ -10,9 +10,15 @@ import { TaskType } from '@/types/tasks/taskType';
 interface StagingAreaTaskContainerProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	tasks?: TaskType[];
 }
-function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: StagingAreaTaskContainerProps) {
-	const dummyTaskList: TaskType[] = [
+function StagingAreaTaskContainer({
+	handleSelectedTarget,
+	selectedTarget,
+	tasks,
+}: StagingAreaTaskContainerProps) {
+	// tasks가 없으면 dummyTaskList 사용
+	const taskList = tasks ?? [
 		{
 			id: 4,
 			name: '안은소',
@@ -29,7 +35,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: Stag
 		<StagingAreaTaskContainerLayout>
 			<StagingAreaSetting />
 			<BtnTaskContainer type="staging">
-				{dummyTaskList.map((task) => (
+				{taskList.map((task) => (
 					<BtnTask
 						key={task.id + task.name}
 						btnType="staging"

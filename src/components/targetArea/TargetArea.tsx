@@ -10,10 +10,12 @@ import { TaskType } from '@/types/tasks/taskType';
 interface TargetAreaProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
-	tasks: TaskType[];
+	tasks?: TaskType[];
 }
 function TargetArea(props: TargetAreaProps) {
 	const { handleSelectedTarget, selectedTarget, tasks } = props;
+
+	const taskList = tasks ?? [];
 
 	return (
 		<TargetAreaLayout>
@@ -32,7 +34,7 @@ function TargetArea(props: TargetAreaProps) {
 						<TargetTaskSection
 							handleSelectedTarget={handleSelectedTarget}
 							selectedTarget={selectedTarget}
-							tasks={tasks}
+							tasks={taskList}
 						/>
 						{provided.placeholder}
 					</div>

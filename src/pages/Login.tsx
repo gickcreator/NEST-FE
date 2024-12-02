@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { useGoogleLogin } from '@react-oauth/google';
+// import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 
-import userLogin from '@/apis/login/loginAxios';
+// import userLogin from '@/apis/login/loginAxios';
 
 function Login() {
 	const navigate = useNavigate();
