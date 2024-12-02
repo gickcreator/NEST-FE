@@ -2,35 +2,37 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import Icons from '@/assets/svg/index';
-import formatDatetoString from '@/utils/formatDatetoString';
+import formatDatetoStrinKor from '@/utils/formatDatetoStringKor';
 
 interface DatePickerPlaceholderProps {
-    isHover: boolean;
-    isPressed: boolean;
-    startDate: Date;
-    endDate: Date | null | undefined;
-    handleClick: () => void;
+	isHover: boolean;
+	isPressed: boolean;
+	startDate: Date | null;
+	endDate: Date | null;
+	handleClick: () => void;
 }
 
 function DatePickerPlaceholder({ isHover, isPressed, startDate, endDate, handleClick }: DatePickerPlaceholderProps) {
-    return (
-        <PlaceholderWrapper isHover={isHover} isPressed={isPressed} onClick={handleClick}>
-            <StlyedCalendarIcon />
-            <DateText>{formatDatetoString(endDate)}</DateText>
-            <StyledArrowIcon />
-            <DateText>{formatDatetoString(startDate)}</DateText>
-        </PlaceholderWrapper>
-    );
+	return (
+		<PlaceholderWrapper isHover={isHover} isPressed={isPressed} onClick={handleClick}>
+			<StlyedCalendarIcon />
+			<DateText>{formatDatetoStrinKor(startDate)}</DateText>
+			<StyledArrowIcon />
+			<DateText>{formatDatetoStrinKor(endDate)}</DateText>
+		</PlaceholderWrapper>
+	);
 }
 
 export default DatePickerPlaceholder;
 
 const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
 	display: flex;
+	gap: 1.2rem;
 	align-items: center;
 	box-sizing: border-box;
+	width: 37.5rem;
 	height: 4rem;
-	padding: 0.4rem 1.2rem;
+	padding: 0.3rem 1.1rem;
 
 	background-color: ${({ theme }) => theme.textButton.WHITE.DEFAULT.BG};
 	border: 1px solid ${({ theme }) => theme.palette.Grey.Grey3};
@@ -38,8 +40,8 @@ const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
 	${({ theme }) => theme.fontTheme.BODY_02};
 
 	${({ isHover, theme }) =>
-        isHover &&
-        css`
+		isHover &&
+		css`
 			&:hover {
 				color: ${theme.textButton.WHITE.HOVER.TEXT};
 
@@ -47,8 +49,8 @@ const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
 			}
 		`}
 	${({ isPressed, theme }) =>
-        isPressed &&
-        css`
+		isPressed &&
+		css`
 			&:active {
 				color: ${theme.textButton.WHITE.PRESSED.TEXT};
 
@@ -58,7 +60,10 @@ const PlaceholderWrapper = styled.div<{ isHover: boolean; isPressed: boolean }>`
 `;
 
 const DateText = styled.p`
-	padding: 0.5rem 1.6rem;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	width: 13.9rem;
 
 	color: ${({ theme }) => theme.textButton.WHITE.DEFAULT.TEXT};
 	${({ theme }) => theme.fontTheme.BODY_02};

@@ -17,7 +17,6 @@ const MainLayOutContainer = styled.div`
 	height: 76.8rem;
 	padding-left: 7.2rem;
 
-	border: 1px solid ${({ theme }) => theme.palette.Orange.Orange5};
 `;
 
 export default MainLayout;
