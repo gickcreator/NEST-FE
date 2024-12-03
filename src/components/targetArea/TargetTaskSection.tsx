@@ -7,9 +7,16 @@ import { TaskType } from '@/types/tasks/taskType';
 interface TargetTaskSectionProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
+	tasks?: TaskType[]; // 선택적 속성으로 유지
 }
-function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskSectionProps) {
-	const dummyTaskList: TaskType[] = [
+
+function TargetTaskSection({
+	handleSelectedTarget,
+	selectedTarget,
+	tasks,
+}: TargetTaskSectionProps) {
+	// tasks가 없을 경우 dummyTaskList를 기본값으로 사용
+	const taskList = tasks ?? [
 		{
 			id: 0,
 			name: '밥먹기',
@@ -49,12 +56,12 @@ function TargetTaskSection({ handleSelectedTarget, selectedTarget }: TargetTaskS
 			},
 			hasDescription: true,
 			status: '미완료',
-		}
+		},
 	];
 
 	return (
 		<BtnTaskContainer type="target">
-			{dummyTaskList.map((task) => (
+			{taskList.map((task) => (
 				<BtnTask
 					btnType="target"
 					key={task.id}
