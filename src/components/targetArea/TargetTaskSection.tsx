@@ -63,7 +63,7 @@ function TargetTaskSection({
 		<BtnTaskContainer type="target">
 			{taskList.map((task) => (
 				<BtnTask
-					btnType="target"
+					iconType="active"
 					key={task.id}
 					hasDescription={task.hasDescription}
 					name={task.name}

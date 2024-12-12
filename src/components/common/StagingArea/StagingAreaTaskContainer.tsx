@@ -10,20 +10,14 @@ import { TaskType } from '@/types/tasks/taskType';
 interface StagingAreaTaskContainerProps {
 	handleSelectedTarget: (task: TaskType | null) => void;
 	selectedTarget: TaskType | null;
-	tasks?: TaskType[];
 }
-function StagingAreaTaskContainer({
-	handleSelectedTarget,
-	selectedTarget,
-	tasks,
-}: StagingAreaTaskContainerProps) {
-	// tasks가 없으면 dummyTaskList 사용
-	const taskList = tasks ?? [
+function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: StagingAreaTaskContainerProps) {
+	const dummyTaskList: TaskType[] = [
 		{
-			id: 4,
-			name: '안은소',
+			id: 3,
+			name: '이시하',
 			deadLine: {
-				date: '2024-12-30',
+				date: '2024-06-30',
 				time: '12:30',
 			},
 			hasDescription: true,
@@ -35,10 +29,10 @@ function StagingAreaTaskContainer({
 		<StagingAreaTaskContainerLayout>
 			<StagingAreaSetting />
 			<BtnTaskContainer type="staging">
-				{taskList.map((task) => (
+				{dummyTaskList.map((task) => (
 					<BtnTask
 						key={task.id + task.name}
-						btnType="staging"
+						iconType="stagingOrDelayed"
 						hasDescription={task.hasDescription}
 						id={task.id}
 						name={task.name}

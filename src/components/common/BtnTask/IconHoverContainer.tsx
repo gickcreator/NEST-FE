@@ -2,15 +2,21 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
+import TodayPlusBtn from '../button/TodayPlusBtn';
+
 import Icons from '@/assets/svg/index';
 import StatusDoneBtn from '@/components/common/button/statusBtn/StatusDoneBtn';
 import StatusInProgressBtn from '@/components/common/button/statusBtn/StatusInProgressBtn';
 import StatusStagingBtn from '@/components/common/button/statusBtn/StatusStagingBtn';
 import StatusTodoBtn from '@/components/common/button/statusBtn/StatusTodoBtn';
 
-type Props = { btnType: 'staging' | 'target' | 'delayed'; status: '진행중' | '미완료' | '완료' | '지연' };
+type Props = {
+	iconType: 'stagingOrDelayed' | 'active';
+	btnStatus?: '진행중' | '미완료' | '완료' | '오늘로추가';
+	status?: string;
+};
 
-function IconHoverContainer({ btnType, status }: Props) {
+function IconHoverContainer({ iconType, btnStatus, status }: Props) {
 	const [iconHovered, setIconHovered] = useState(false);
 	const [iconClicked, setIconClicked] = useState(false);
 	const handleIconMouseEnter = () => {
@@ -33,7 +39,11 @@ function IconHoverContainer({ btnType, status }: Props) {
 	};
 
 	const renderStatusButton = () => {
-		if (btnType === 'delayed') {
+		if (status === '지연') {
+			// 여기서 리턴하면 안됨. 이 경우엔 무조건 iconType === 'stagingOrDelayed' 이므로 호버 시 StatusStagingBtn가 떠야함
+			if (iconHovered) {
+				return <StatusStagingBtn />;
+			}
 			return <StagingIconHoverIndicator />;
 		}
 
@@ -41,18 +51,20 @@ function IconHoverContainer({ btnType, status }: Props) {
 			return <IconHoverIndicator />;
 		}
 
-		if (btnType === 'staging') {
+		if (iconType === 'stagingOrDelayed') {
 			return <StatusStagingBtn />;
 		}
 
-		if (btnType === 'target') {
-			switch (status) {
+		if (iconType === 'active') {
+			switch (btnStatus) {
 				case '완료':
 					return <StatusDoneBtn />;
 				case '진행중':
 					return <StatusInProgressBtn />;
-				default:
+				case '미완료':
 					return <StatusTodoBtn />;
+				default:
+					return <TodayPlusBtn />;
 			}
 		}
 
