@@ -72,6 +72,7 @@ function TargetTaskSection({
 					id={task.id}
 					handleSelectedTarget={handleSelectedTarget}
 					selectedTarget={selectedTarget}
+					preventDoubleClick={false}
 				/>
 			))}
 			<ScrollGradient />
