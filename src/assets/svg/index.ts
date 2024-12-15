@@ -3,22 +3,25 @@ import Arrow_up from '@/assets/svg/arrow-up.svg?react';
 import Icn_calander from '@/assets/svg/calendar-minus-01.svg?react';
 import ClockCheck from '@/assets/svg/clock-check.svg?react';
 import Icn_date_clock from '@/assets/svg/clock.svg?react';
+import Dashboard_Complete from '@/assets/svg/Dashboard_Complete_Icon.svg?react';
+import DashboardPostpone from '@/assets/svg/Dashboard_Postpone_Icon.svg?react';
+import DashboardProgress from '@/assets/svg/Dashboard_Progress_Icon.svg?react';
 import DeleteIcon from '@/assets/svg/Delete.svg?react';
 import DoneIcon from '@/assets/svg/DoneIcon.svg?react';
-import TimelineDelete from '@/assets/svg/icn_delete.svg?react';
-import Icn_selectbox_selected from '@/assets/svg/icn_selectbox_selected.svg?react';
-import Icn_selectbox_Unselected from '@/assets/svg/icn_selectbox_unselected.svg?react';
 import IcnArrangeCalendar from '@/assets/svg/icn_arrange_calendar.svg?react';
 import IcnArrangeLeft from '@/assets/svg/icn_arrange_left.svg?react';
 import IcnArrangeRight from '@/assets/svg/icn_arrange_right.svg?react';
 import IcnArrangeSet from '@/assets/svg/icn_arrange_set.svg?react';
 import Icn_clock from '@/assets/svg/icn_clock.svg?react';
+import TimelineDelete from '@/assets/svg/icn_delete.svg?react';
 import IcnFile from '@/assets/svg/icn_file.svg?react';
 import Icn_hover_indicator from '@/assets/svg/icn_hover_indicator.svg?react';
 import Icn_nav_calendar from '@/assets/svg/icn_nav_calendar.svg?react';
 import Icn_nav_dashboard from '@/assets/svg/icn_nav_dashboard.svg?react';
 import Icn_nav_setting from '@/assets/svg/icn_nav_setting.svg?react';
 import Icn_nav_today from '@/assets/svg/icn_nav_today.svg?react';
+import Icn_selectbox_selected from '@/assets/svg/icn_selectbox_selected.svg?react';
+import Icn_selectbox_Unselected from '@/assets/svg/icn_selectbox_unselected.svg?react';
 import Icn_line from '@/assets/svg/line164.svg?react';
 import plus_circle from '@/assets/svg/plus-circle.svg?react';
 import PlusArrow from '@/assets/svg/PlusArrow.svg?react';
@@ -76,6 +79,9 @@ const Icons = {
 	plus_circle,
 	Icn_selectbox_selected,
 	Icn_selectbox_Unselected,
+	Dashboard_Complete,
+	DashboardPostpone,
+	DashboardProgress,
 };
 
 export default Icons;
