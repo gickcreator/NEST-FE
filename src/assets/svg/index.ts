@@ -8,8 +8,6 @@ import DashboardPostpone from '@/assets/svg/Dashboard_Postpone_Icon.svg?react';
 import DashboardProgress from '@/assets/svg/Dashboard_Progress_Icon.svg?react';
 import DeleteIcon from '@/assets/svg/Delete.svg?react';
 import DoneIcon from '@/assets/svg/DoneIcon.svg?react';
-import EmptyPostpone from '@/assets/svg/Empty_Postpone.svg?react';
-import EmptyTask from '@/assets/svg/Empty_Task.svg?react';
 import IcnArrangeCalendar from '@/assets/svg/icn_arrange_calendar.svg?react';
 import IcnArrangeLeft from '@/assets/svg/icn_arrange_left.svg?react';
 import IcnArrangeRight from '@/assets/svg/icn_arrange_right.svg?react';
@@ -84,10 +82,6 @@ const Icons = {
 	Dashboard_Complete,
 	DashboardPostpone,
 	DashboardProgress,
-	Empty: {
-		EmptyTask,
-		EmptyPostpone,
-	},
 };
 
 export default Icons;

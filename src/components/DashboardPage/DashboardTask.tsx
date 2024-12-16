@@ -1,92 +1,71 @@
 import styled from '@emotion/styled';
-import { useState, FunctionComponent } from 'react';
+import { useState } from 'react';
 
-import Icons from '@/assets/svg/index';
 import BtnTask from '@/components/common/BtnTask/BtnTask';
 import ScrollGradient from '@/components/common/ScrollGradient';
-import DASHBOARD_TASK_TYPE from '@/constants/dashboardTask';
 import TODAY from '@/constants/tasksToday';
 import { TaskType } from '@/types/tasks/taskType';
 
-const settingImagesMap: Record<string, FunctionComponent<React.SVGProps<SVGSVGElement>>> = {
-	upcoming: Icons.Empty.EmptyTask,
-	postponed: Icons.Empty.EmptyPostpone,
-	inprogress: Icons.Empty.EmptyTask,
-};
-
 interface DashboardTaskProps {
 	text: 'upcoming' | 'postponed' | 'inprogress';
+	taskStatus: string;
+	emptyStatus: string;
+	emptyImg: string;
 }
-
-function DashboardTask({ text }: DashboardTaskProps) {
-	const ImageComponent = settingImagesMap[text];
+function DashboardTask({ text, taskStatus, emptyStatus, emptyImg }: DashboardTaskProps) {
 	const [selectedTarget, setSelectedTarget] = useState<TaskType | null>(null);
 	const handleSelectedTarget = (task: TaskType | null) => {
 		setSelectedTarget(task);
 	};
 
-	const EmptyImageWrapper = styled(ImageComponent)`
+	const EmptyImageWrapper = styled.div`
 		justify-content: center;
 		width: 19rem;
-		height: 19rem;
+		height: auto;
 	`;
-
-	let taskStatus = '';
-	let emptyStatus = '';
-	if (text === 'upcoming') {
-		taskStatus = DASHBOARD_TASK_TYPE.UPCOMING;
-		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYTASK;
-	} else if (text === 'postponed') {
-		taskStatus = DASHBOARD_TASK_TYPE.POSTPONED;
-		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYPOSTPONE;
-	} else if (text === 'inprogress') {
-		taskStatus = DASHBOARD_TASK_TYPE.INPROGRESS;
-		emptyStatus = DASHBOARD_TASK_TYPE.EMPTYTASK;
-	}
 
 	const dummyTaskList: TaskType[] = [
 		{
 			id: 10,
-			name: '오소기',
+			name: '바보~',
 			deadLine: {
-				date: '2024-11-11',
-				time: '12:21',
+				date: '2024-06-30',
+				time: '12:30',
 			},
 			hasDescription: false,
 			status: '진행중',
 		},
 		{
 			id: 11,
-			name: '프론트엔드 개발',
+			name: '넛수레',
 			deadLine: {
-				date: '2024-11-24',
-				time: '09:30',
+				date: '2024-06-30',
+				time: '12:30',
 			},
 			hasDescription: true,
 			status: '지연',
 		},
 		{
 			id: 12,
-			name: '백엔드 개발',
+			name: '콘하스',
 			deadLine: {
-				date: '2024-11-30',
-				time: '15:00',
+				date: '2024-06-30',
+				time: '12:30',
 			},
-			hasDescription: false,
-			status: '진행중',
+			hasDescription: true,
+			status: '완료',
 		},
 		{
 			id: 13,
-			name: '프로젝트 완성',
+			name: '김지원',
 			deadLine: {
-				date: '2024-12-18',
-				time: '09:00',
+				date: '2024-06-30',
+				time: '12:30',
 			},
 			hasDescription: true,
-			status: '진행중',
-		}
+			status: '미완료',
+		},
 	];
-
 	return (
 		<TaskLayout>
 			<TextBox>
@@ -99,7 +78,9 @@ function DashboardTask({ text }: DashboardTaskProps) {
 			<ScrollArea>
 				{TODAY.data.tasks.length === 0 ? (
 					<EmptyWrapper>
-						<EmptyImageWrapper />
+						<EmptyImageWrapper>
+							<ImageComponent src={emptyImg} />
+						</EmptyImageWrapper>
 						<EmptyText text={text}>{emptyStatus}</EmptyText>
 					</EmptyWrapper>
 				) : (
@@ -125,7 +106,6 @@ function DashboardTask({ text }: DashboardTaskProps) {
 		</TaskLayout>
 	);
 }
-export default DashboardTask;
 
 const TaskLayout = styled.div`
 	display: flex;
@@ -221,3 +201,10 @@ const EmptyText = styled.p<{ text: string }>`
 	${({ theme }) => theme.fontTheme.CAPTION_01};
 	color: ${({ theme }) => theme.palette.Grey.Grey4};
 `;
+
+const ImageComponent = styled.img`
+	width: 100%;
+	height: 100%;
+`;
+
+export default DashboardTask;
