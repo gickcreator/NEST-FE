@@ -18,7 +18,7 @@ function TargetTaskSection(props: TargetTaskSectionProps) {
 	const { isFetched, data } = useGetTasks({ targetDate });
 	return (
 		<BtnTaskContainer type="target">
-			{isFetched && (
+			{isFetched && data && data.data (
 				<>
 					{data.data.tasks.map((task: TaskType, index: number) => (
 						<Draggable key={task.id} draggableId={task.id.toString()} index={index}>

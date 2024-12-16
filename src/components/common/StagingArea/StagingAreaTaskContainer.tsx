@@ -44,7 +44,7 @@ function StagingAreaTaskContainer({ handleSelectedTarget, selectedTarget }: Stag
 				handleSortOrder={handleSortOrder}
 			/>
 			<BtnTaskContainer type="staging">
-				{isFetched && (
+				{isFetched && data && data.data (
 					<>
 						{data.data.tasks.map((task: TaskType, index: number) => (
 							<Draggable key={task.id} draggableId={task.id.toString()} index={index}>
